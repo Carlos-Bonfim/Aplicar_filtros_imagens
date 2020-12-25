@@ -54,22 +54,20 @@ def main():
     if filtros == 'Grayscale':
         converted_image = np.array(load_image.convert('RGB'))
         gray_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2GRAY)
-        # opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
 
         opt_size = st.sidebar.slider('Selecione o tamanho', 1, 200, 50)
 
         width = int(load_image.size[0] * opt_size / 100)
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
-
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
         edited_photo_cont_gray = cv2.resize(gray_image[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
-
-        # st.image(gray_image, width=opt_size)
 
         st.image(edited_photo_cont_gray)
 
@@ -84,7 +82,6 @@ def main():
         inv_gray_image = 255 - gray_image
         blur_image = cv2.GaussianBlur(inv_gray_image, (sketch_amount, sketch_amount), 0, 0)
         sketch_image = cv2.divide(gray_image, 255 - blur_image, scale=256)
-        # opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
 
         opt_size = st.sidebar.slider('Selecione o tamanho', 1, 200, 50)
 
@@ -92,14 +89,13 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
         edited_photo_cont_sketch = cv2.resize(sketch_image[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
-
-        # st.image(sketch_image, width=opt_size)
 
         st.image(edited_photo_cont_sketch)
 
@@ -110,13 +106,11 @@ def main():
     elif filtros == 'Sépia':
         sepia_amount = st.sidebar.slider('kernel (n x n)', 1, 3, 1, step=1)
         converted_image = np.array(load_image.convert('RGB'))
-        #converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
         kernel = np.array([[0.272, 0.534, 0.131],
                            [0.349, 0.686, 0.168],
                            [0.393, 0.769, 0.189]])
         teste = kernel * sepia_amount
         sepia_image = cv2.filter2D(converted_image, -1, teste)
-        # opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
 
         opt_size = st.sidebar.slider('Selecione o tamanho', 1, 200, 50)
 
@@ -124,14 +118,13 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
         edited_photo_cont_sepia = cv2.resize(sepia_image[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
-
-        # st.image(sepia_image, width=opt_size)
 
         st.image(edited_photo_cont_sepia, channels='BGR')
 
@@ -153,13 +146,13 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
         edited_photo_cont_blur = cv2.resize(blur_image[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
-        # st.image(blur_image, channels='BGR', witdh=opt_size)
 
         st.image(edited_photo_cont_blur, channels='BGR')
 
@@ -180,10 +173,11 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
         edited_photo_cont_canny = cv2.resize(canny[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
         st.image(edited_photo_cont_canny)
@@ -191,21 +185,6 @@ def main():
         # download da imagem
         result = Image.fromarray(edited_photo_cont_canny)
         st.markdown(get_image_download_link(result), unsafe_allow_html=True)
-
-    #elif filtros == 'Contraste':
-    #    c_amount = st.sidebar.slider('Contraste', 0.0, 2.0, 1.0)
-    #    enhancer = ImageEnhance.Contrast(load_image)
-    #    contrast_image = enhancer.enhance(c_amount)
-    #    opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
-
-    #    left = st.sidebar.slider('left', 1.0, float(load_image.size[1]), 0.0)
-    #    upper = st.sidebar.slider('upper', 1.0, float(load_image.size[1]), 0.0)
-    #    right = st.sidebar.slider('right', 1.0, float(load_image.size[0]), float(load_image.size[0]))
-    #    lower = st.sidebar.slider('lower', 1.0, float(load_image.size[0]), float(load_image.size[0]))
-    #    cropped = contrast_image.crop((left, upper, right, lower))
-
-    #    st.image(cropped, width=opt_size)
-        # st.text(f'Tamanho atual da imagem: {cropped.size}')
 
     elif filtros == 'Contraste e brilho':
         bb_amount = st.sidebar.slider('brilho', -100, 100, 0)
@@ -216,7 +195,6 @@ def main():
         img = img * (contrast / 127 + 1) - contrast + brightness
         img = np.clip(img, 0, 255)
         img = np.uint8(img)
-        # st.image(img)
 
         opt_size = st.sidebar.slider('Selecione o tamanho', 1, 200, 50)
 
@@ -224,10 +202,11 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
         edited_photo_cont_bril = cv2.resize(img[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
         st.image(edited_photo_cont_bril)
@@ -236,35 +215,6 @@ def main():
         result = Image.fromarray(edited_photo_cont_bril)
         st.markdown(get_image_download_link(result), unsafe_allow_html=True)
 
-    #elif filtros == 'Brightess':
-    #    brigh_amount = st.sidebar.slider('Brightess', 0.0, 2.0, 1.0)
-    #    enhancer = ImageEnhance.Brightness(load_image)
-    #    bright_image = enhancer.enhance(brigh_amount)
-    #    opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
-
-    #    left = st.sidebar.slider('left', 1.0, float(load_image.size[1]), 0.0)
-    #    upper = st.sidebar.slider('upper', 1.0, float(load_image.size[1]), 0.0)
-    #    right = st.sidebar.slider('right', 1.0, float(load_image.size[0]), float(load_image.size[0]))
-    #    lower = st.sidebar.slider('lower', 1.0, float(load_image.size[0]), float(load_image.size[0]))
-    #    cropped = bright_image.crop((left, upper, right, lower))
-
-    #    st.image(cropped, width=opt_size)
-        # st.text(f'Tamanho atual da imagem: {cropped.size}')
-
-    #elif filtros == 'Sharpness':
-    #    sharp_amount = st.sidebar.slider('Brightess', 0.0, 10.0, 1.0)
-    #    enhancer = ImageEnhance.Sharpness(load_image)
-    #    sharp_image = enhancer.enhance(sharp_amount)
-    #    opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
-
-    #    left = st.sidebar.slider('left', 1.0, float(load_image.size[1]), 0.0)
-    #    upper = st.sidebar.slider('upper', 1.0, float(load_image.size[1]), 0.0)
-    #    right = st.sidebar.slider('right', 1.0, float(load_image.size[0]), float(load_image.size[0]))
-    #    lower = st.sidebar.slider('lower', 1.0, float(load_image.size[1]), float(load_image.size[1]))
-    #    cropped = sharp_image.crop((left, upper, right, lower))
-
-    #    st.image(cropped, width=opt_size)
-        # st.text(f'Tamanho atual da imagem: {cropped.size}')
 
     elif filtros == 'Sharpness':
         sharp_amount = st.sidebar.slider('kernel (n x n)', 0, 10, 1, step=1)
@@ -275,7 +225,6 @@ def main():
                            [-1.0, -1.0, -1.0]])
         teste = kernel * sharp_amount
         sharp_image = cv2.filter2D(converted_image, -1, teste)
-        # opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
 
         opt_size = st.sidebar.slider('Selecione o tamanho', 1, 200, 50)
 
@@ -283,10 +232,11 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        left = st.sidebar.slider('left', 1, int(load_image.size[1]), 0)
-        upper = st.sidebar.slider('upper', 1, int(load_image.size[1]), 0)
-        right = st.sidebar.slider('right', 1, int(load_image.size[0]), int(load_image.size[0]))
-        lower = st.sidebar.slider('lower', 1, int(load_image.size[0]), int(load_image.size[0]))
+        st.sidebar.text("Ajuste o recorte da foto")
+        left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
+        upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
+        right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
+        lower = st.sidebar.slider('Ajuste à direita', 1, int(load_image.size[0]), int(load_image.size[0]))
 
 
         edited_photo_sharp = cv2.resize(sharp_image[left:(right + 1), upper:(lower + 1)], dim, interpolation=cv2.INTER_AREA)
