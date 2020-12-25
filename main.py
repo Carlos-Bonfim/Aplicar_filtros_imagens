@@ -29,8 +29,8 @@ def main():
     link = '[*carlosbonfim.com*](https://carlosbonfim.com)'
     st.sidebar.markdown(link, unsafe_allow_html=True)
 
-    st.title('**Projeto 1 - Aplicação de filtros em fotos**')
-    st.sidebar.title('Filtros')
+    st.title('**Projeto 1 - Aplicação de filtros em Imagens**')
+    st.sidebar.title('**Filtros**')
 
     # Menu com opções diferentes de páginas
     #opcoes_menu = ['Filtros', 'Sobre']
@@ -48,7 +48,7 @@ def main():
 
 
     # filtros à serem aplicados
-    filtros = st.sidebar.selectbox('Selecione um filtro', ['Original', 'Grayscale', 'Sketch', 'Sépia', 'Blur', 'Canny',
+    filtros = st.sidebar.selectbox('**Selecione um filtro**', ['Original', 'Grayscale', 'Sketch', 'Sépia', 'Blur', 'Canny',
                                                'Contraste e brilho', 'Sharpness'])
 
     if filtros == 'Grayscale':
@@ -76,7 +76,7 @@ def main():
         st.markdown(get_image_download_link(result), unsafe_allow_html=True)
 
     elif filtros == 'Sketch':
-        sketch_amount = st.sidebar.slider('kernel (n x n)', 3, 81, 9, step=2)
+        sketch_amount = st.sidebar.slider('Selecione a intensidade de contorno', 3, 81, 9, step=2)
         converted_image = np.array(load_image.convert('RGB'))
         gray_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2GRAY)
         inv_gray_image = 255 - gray_image
@@ -104,7 +104,7 @@ def main():
         st.markdown(get_image_download_link(result), unsafe_allow_html=True)
 
     elif filtros == 'Sépia':
-        sepia_amount = st.sidebar.slider('kernel (n x n)', 1, 3, 1, step=1)
+        sepia_amount = st.sidebar.slider('Selecione a intensidade', 1, 3, 1, step=1)
         converted_image = np.array(load_image.convert('RGB'))
         kernel = np.array([[0.272, 0.534, 0.131],
                            [0.349, 0.686, 0.168],
@@ -126,7 +126,8 @@ def main():
 
         edited_photo_cont_sepia = cv2.resize(sepia_image[left:(right+1), upper:(lower+1)], dim, interpolation=cv2.INTER_AREA)
 
-        st.image(edited_photo_cont_sepia, channels='BGR')
+        #st.image(edited_photo_cont_sepia, channels='BGR')
+        st.image(edited_photo_cont_sepia, channels='RGB')
 
         # download da imagem
         result = Image.fromarray(edited_photo_cont_sepia)
@@ -134,7 +135,7 @@ def main():
 
 
     elif filtros == 'Blur':
-        b_amount = st.sidebar.slider('kernel (n x n)', 3, 81, 9, step=2)
+        b_amount = st.sidebar.slider('Selecione a intensidade', 3, 81, 9, step=2)
         converted_image = np.array(load_image.convert('RGB'))
         converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
         blur_image = cv2.GaussianBlur(converted_image, (b_amount, b_amount), 0, 0)
@@ -160,7 +161,7 @@ def main():
         st.markdown(get_image_download_link(result), unsafe_allow_html=True)
 
     elif filtros == 'Canny':
-        b_amount = st.sidebar.slider('kernel (n x n)', 1, 33, 3, step=2)
+        b_amount = st.sidebar.slider('Selecione a intensidade', 1, 33, 3, step=2)
         converted_image = np.array(load_image.convert('RGB'))
         converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
         blur_image = cv2.GaussianBlur(converted_image, (b_amount, b_amount), 0, 0)
@@ -216,7 +217,7 @@ def main():
 
 
     elif filtros == 'Sharpness':
-        sharp_amount = st.sidebar.slider('kernel (n x n)', 0, 10, 1, step=1)
+        sharp_amount = st.sidebar.slider('Selecione a intensidade', 0, 10, 1, step=1)
         converted_image = np.array(load_image.convert('RGB'))
         converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
         kernel = np.array([[-1.0, -1.0, -1.0],
