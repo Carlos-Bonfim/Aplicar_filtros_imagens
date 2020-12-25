@@ -76,7 +76,7 @@ def main():
         st.markdown(get_image_download_link(result), unsafe_allow_html=True)
 
     elif filtros == 'Sketch':
-        sketch_amount = st.sidebar.slider('Selecione a intensidade de contorno', 2, 100, 10, step=2)
+        sketch_amount = st.sidebar.slider('Selecione a intensidade de contorno', 2, 100, 11, step=2)
         converted_image = np.array(load_image.convert('RGB'))
         gray_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2GRAY)
         inv_gray_image = 255 - gray_image
