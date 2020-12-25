@@ -61,7 +61,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
         
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
@@ -89,7 +89,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
@@ -118,7 +118,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
@@ -138,7 +138,6 @@ def main():
         converted_image = np.array(load_image.convert('RGB'))
         converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
         blur_image = cv2.GaussianBlur(converted_image, (b_amount, b_amount), 0, 0)
-        #opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
 
         opt_size = st.sidebar.slider('Selecione o tamanho', 1, 200, 50)
 
@@ -146,7 +145,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
@@ -173,7 +172,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
@@ -202,7 +201,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
@@ -232,7 +231,7 @@ def main():
         height = int(load_image.size[1] * opt_size / 100)
         dim = (width, height)
 
-        st.sidebar.text("Ajuste o recorte da foto")
+        st.sidebar.header("Ajuste o recorte da foto")
         left = st.sidebar.slider('Ajuste superior', 1, int(load_image.size[1]), 0)
         upper = st.sidebar.slider('Ajuste à esquerda', 1, int(load_image.size[1]), 0)
         right = st.sidebar.slider('Ajuste inferior', 1, int(load_image.size[0]), int(load_image.size[0]))
