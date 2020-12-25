@@ -1,4 +1,4 @@
-# Aplicação filtros em imagens
+# Aplicação de filtros em imagens
 
  Projeto 1 da MasterClass de Visão Computacional do Sigmoidal do Carlos Melo
  
