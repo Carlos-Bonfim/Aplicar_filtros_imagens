@@ -219,7 +219,7 @@ def main():
     elif filtros == 'Sharpness':
         sharp_amount = st.sidebar.slider('Selecione a intensidade', 0, 10, 1, step=1)
         converted_image = np.array(load_image.convert('RGB'))
-        converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
+        #converted_image = cv2.cvtColor(converted_image, cv2.COLOR_RGB2BGR)
         kernel = np.array([[-1.0, -1.0, -1.0],
                            [-1.0, 9.0, -1.0],
                            [-1.0, -1.0, -1.0]])
@@ -241,7 +241,7 @@ def main():
 
         edited_photo_sharp = cv2.resize(sharp_image[left:(right + 1), upper:(lower + 1)], dim, interpolation=cv2.INTER_AREA)
 
-        st.image(edited_photo_sharp, channels='BGR')
+        st.image(edited_photo_sharp, channels='RGB')
 
         # download da imagem
         result = Image.fromarray(edited_photo_sharp)
