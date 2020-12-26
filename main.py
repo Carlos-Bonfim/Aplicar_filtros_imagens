@@ -249,11 +249,11 @@ def main():
 
 
     elif filtros == 'Original':
-        opt_size = st.sidebar.slider('Selecione o tamanho', min_value=int(load_image.size[0]/2), max_value=800)
+        opt_size = st.sidebar.slider('Selecione o tamanho', min_value=int(load_image.size[0]/2), max_value=load_image.size[1])
         st.image(load_image, width=opt_size)
 
     else:
-        opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=800)
+        opt_size = st.sidebar.slider('Selecione o tamanho', min_value=300, max_value=load_image.size[1])
         st.image(load_image, width=opt_size)
 
 
